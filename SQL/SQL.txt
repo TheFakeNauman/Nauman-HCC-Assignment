@@ -1,0 +1,77 @@
+/*1*/
+SELECT name, num_babies
+FROM babynames
+WHERE gender = 'M' AND us_state = 'MD' AND date_year = 1991
+ORDER BY num_babies DESC
+    FETCH FIRST 1 ROWS ONLY;
+
+/*2*/
+
+SELECT date_year, SUM(num_babies) as total_babies
+FROM babynames
+WHERE name = 'Christopher' AND gender = 'M'
+GROUP BY date_year
+ORDER BY total_babies DESC
+    FETCH FIRST 1 ROWS ONLY;
+
+
+/*3*/
+
+SELECT date_year, SUM(num_babies) as total_babies
+FROM babynames
+WHERE name = 'Rosemary' AND gender = 'F'
+GROUP BY date_year
+ORDER BY total_babies DESC
+    FETCH FIRST 1 ROWS ONLY;
+
+/*4*/
+
+SELECT name, num_babies
+FROM babynames
+WHERE us_state = 'MD' AND date_year = 2000 AND num_babies > 500
+ORDER BY num_babies DESC;
+
+/*5*/
+
+SELECT us_state, num_babies
+FROM babynames
+WHERE name = 'Xavier' AND gender = 'M' AND date_year = 2014
+ORDER BY num_babies ASC
+    FETCH FIRST 1 ROWS ONLY;
+
+
+/*6*/
+
+SELECT us_state, num_babies
+FROM babynames
+WHERE name = 'Hannah' AND gender = 'F' AND date_year = 1997
+ORDER BY num_babies DESC
+    FETCH FIRST 1 ROWS ONLY;
+
+/*7*/
+
+INSERT 
+INTO babynames (id, name, date_year, gender, us_state, num_babies)
+VALUES (10000000, 'Joseph', 2016, 'M', 'PA', 476);
+
+select id, name, date_year, gender, us_state, num_babies 
+from babynames 
+where id = 10000000;
+
+/*8*/
+
+DELETE FROM babynames
+WHERE id = 10000000;
+
+
+select id, name, date_year, gender, us_state, num_babies
+from babynames 
+where id = 10000000;
+
+/*9*/
+SELECT name, SUM(num_babies) AS total_babies
+FROM babynames
+WHERE gender = 'M' AND date_year = 1991
+GROUP BY name
+ORDER BY total_babies DESC
+    FETCH FIRST 1 ROWS ONLY;
